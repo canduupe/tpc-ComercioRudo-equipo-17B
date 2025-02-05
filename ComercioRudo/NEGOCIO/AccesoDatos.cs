@@ -21,7 +21,7 @@ namespace NEGOCIO
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS01; database=comercio_rudo; integrated security= true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=comercio_rudo; integrated security= true");
             comando = new SqlCommand();
         }
 
@@ -32,6 +32,13 @@ namespace NEGOCIO
             comando.CommandText = consulta; 
 
         }
+
+        public void setearProcedimiento(string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
+
 
         public void EjecutarLectura()
         {
