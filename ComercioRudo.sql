@@ -63,8 +63,9 @@ values ('Armani', 1)
 insert into Categorias(Nombre, Activa)
 values ('Armani', 1)
 -----------------------------------------------------------
-
-
+insert into Usuarios (Usuario, Contraseña, TipoUsuario)
+values ('Can', 'De', 2)
+------------------------------------------------------
 
 create procedure  spListarMarcas as
  
@@ -96,6 +97,9 @@ values ('Armani', 1, 1, 1)
  select IdCliente, Nombre, Apellido, DNI from Clientes
 
  exec spListarClientes
+
+ insert into Clientes (Nombre, Apellido, DNI)
+ values ('Ski','Bidi', '111111')
  ---------------------------------------------------
 
  create procedure spListarVendedores as
@@ -103,6 +107,8 @@ values ('Armani', 1, 1, 1)
 
  exec spListarVendedores
 
+ insert into Vendedor (Nombre, Apellido, IdUsuario)
+ values ('Candela','Peña', 2)
  -----------------------------------------------------------
 
  create procedure spListarUsuarios as
@@ -110,6 +116,7 @@ values ('Armani', 1, 1, 1)
  
  exec spListarUsuarios
 
+ 
  ----------------------------------------------------------
 
  create procedure spListarAdministradores as
@@ -117,5 +124,7 @@ values ('Armani', 1, 1, 1)
 
  exec spListarAdministradores
 
+ insert into Administrador (Nombre, Apellido, IdUsuario)
+ values ('Joaquin','Lopez', 1)
  ----------------------------------------------------------
 

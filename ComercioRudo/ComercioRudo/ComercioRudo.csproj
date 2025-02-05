@@ -121,8 +121,11 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="ListaAdmin.aspx" />
     <Content Include="ListaCategorias.aspx" />
+    <Content Include="ListaCliente.aspx" />
     <Content Include="ListaProductos.aspx" />
+    <Content Include="ListarVendedores.aspx" />
     <Content Include="ListaUsuarios.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -213,6 +216,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ListaAdmin.aspx.cs">
+      <DependentUpon>ListaAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaAdmin.aspx.designer.cs">
+      <DependentUpon>ListaAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListaCategorias.aspx.cs">
       <DependentUpon>ListaCategorias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -220,12 +230,26 @@
     <Compile Include="ListaCategorias.aspx.designer.cs">
       <DependentUpon>ListaCategorias.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListaCliente.aspx.cs">
+      <DependentUpon>ListaCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaCliente.aspx.designer.cs">
+      <DependentUpon>ListaCliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListaProductos.aspx.cs">
       <DependentUpon>ListaProductos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListaProductos.aspx.designer.cs">
       <DependentUpon>ListaProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListarVendedores.aspx.cs">
+      <DependentUpon>ListarVendedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarVendedores.aspx.designer.cs">
+      <DependentUpon>ListarVendedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaUsuarios.aspx.cs">
       <DependentUpon>ListaUsuarios.aspx</DependentUpon>
