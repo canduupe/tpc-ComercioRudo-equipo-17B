@@ -7,29 +7,32 @@ using DOMINIO;
 
 namespace NEGOCIO
 {
-    public class MarcasNegocio
+    public class CategoriasNegocio
     {
-        public List<Marcas> listarConSP()
+        public List<Categorias> listarConSP()
         {
-            List<Marcas> lista = new List<Marcas>();
+            List<Categorias> lista = new List<Categorias>();
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
-
-                datos.setearProcedimiento("spListarMarcas");
+                datos.setearProcedimiento("spListarCategoria");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Marcas aux = new Marcas();
+                    Categorias aux = new Categorias();
 
-                    aux.IdMarca = (int)datos.Lector["IdMarca"];
+                    aux.IdCategoria = (int)datos.Lector["IdCategoria"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Activo = (int)datos.Lector["Activa"];
+                    aux.Activa = (int)datos.Lector["Activa"];
 
                     lista.Add(aux);
+                        
                 }
-                    return lista;   
+
+                return lista;   
+
             }
             catch (Exception ex)
             {
@@ -37,8 +40,11 @@ namespace NEGOCIO
                 throw ex;
             }
 
-        }
 
+
+
+
+        }
 
 
 
