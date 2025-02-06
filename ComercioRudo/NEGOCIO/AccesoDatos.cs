@@ -21,7 +21,7 @@ namespace NEGOCIO
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS01; database=comercio_rudo; integrated security= true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=comercio_rudo; integrated security= true");
             comando = new SqlCommand();
         }
 
@@ -56,6 +56,25 @@ namespace NEGOCIO
             }
         }
 
+        public void setearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
+
+        public void realizarAccion()
+        {
+            comando.Connection = conexion;
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void CerrarConexion()
         {

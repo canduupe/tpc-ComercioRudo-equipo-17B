@@ -17,5 +17,10 @@ namespace ComercioRudo
             dgvListaCli.DataBind(); 
 
         }
+
+        protected void btnAgregarCli_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgregarCliente.aspx", false);
+        }
     }
 }

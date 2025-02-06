@@ -3,5 +3,6 @@
 
 
         <asp:GridView ID="gdvListaCate" runat="server" CssClass="table"></asp:GridView>
-        
+        <asp:Button ID="btnAgregarCat" runat="server" Text="AGREGAR" CssClass="btn btn-outline-primary" OnClick="btnAgregarCat_Click"    />
+
 </asp:Content>

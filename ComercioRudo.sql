@@ -64,9 +64,12 @@ insert into Categorias(Nombre, Activa)
 values ('Armani', 1)
 -----------------------------------------------------------
 insert into Usuarios (Usuario, Contraseña, TipoUsuario)
-values ('Can', 'De', 2)
+values ('Joa', 'Quin', 1)
 ------------------------------------------------------
 
+
+-- PROCEDURES LISTADO
+-----------------------------------------------------
 create procedure  spListarMarcas as
  
  select IdMarca, Nombre, Activa from Marcas
@@ -127,4 +130,37 @@ values ('Armani', 1, 1, 1)
  insert into Administrador (Nombre, Apellido, IdUsuario)
  values ('Joaquin','Lopez', 1)
  ----------------------------------------------------------
+
+ 
+
+ --PROCEDURES AGREGADO
+ -------------------------------------------------------------
+ create procedure spAgregarCli 
+ @Nombre varchar (50),
+ @Apellido varchar(50),
+ @DNI varchar (8)
+ as
+ insert into Clientes values(@Nombre,@Apellido,@DNI)
+ -------------------------------------------------------------
+  create procedure spAgregarMarca
+ @Nombre varchar (50)
+ as
+ insert into Marcas values(@Nombre,1)
+ -------------------------------------------------------------
+ create procedure spAgregarCate
+ @Nombre varchar (50)
+ as
+ insert into Categorias values(@Nombre,1)
+
+
+
+
+
+
+
+
+
+
+
+
 

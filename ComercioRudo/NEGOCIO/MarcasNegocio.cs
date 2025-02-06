@@ -39,7 +39,25 @@ namespace NEGOCIO
 
         }
 
+        public void Agregar(Marcas marca)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearProcedimiento("spAgregarMarca");
+                datos.setearParametro("@Nombre", marca.Nombre);
+
+                datos.realizarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
 
 
     }

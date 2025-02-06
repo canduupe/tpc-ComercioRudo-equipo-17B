@@ -18,5 +18,10 @@ namespace ComercioRudo
             dgvListaMarcas.DataBind();
 
         }
+
+        protected void btnAgregarMarca_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgregarMarca.aspx", false);
+        }
     }
 }

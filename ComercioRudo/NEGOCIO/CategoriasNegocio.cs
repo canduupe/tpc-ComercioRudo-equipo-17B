@@ -46,6 +46,27 @@ namespace NEGOCIO
 
         }
 
+        public void Agregar(Categorias categoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("spAgregarCate");
+                datos.setearParametro("@Nombre", categoria.Nombre);
+
+                datos.realizarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+
+        }
 
 
     }
