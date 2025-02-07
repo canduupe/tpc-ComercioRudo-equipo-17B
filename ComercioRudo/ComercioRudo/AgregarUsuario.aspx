@@ -15,6 +15,10 @@
         <label class="Boton">TipoUsuario </label>
         <asp:TextBox runat="server" CssClass="form-control" ID="txtTipoUsuario"/>  
     </div>
+    <div class="Boton">   
+        <asp:Button ID="btnAgregar" runat="server" Text="ACEPTAR" OnClick="btnAgregar_Click" CssClass="btn btn-outline-primary"      />
+        <asp:Button ID="btnCancelar" runat="server" Text="CANCELAR" OnClick="btnCancelar_Click" CssClass="btn btn-outline-warning" />
+    </div>
 
 
 </asp:Content>

@@ -15,15 +15,16 @@ create table Administrador(
 IdAdministrador int primary key identity (1,1),
 Nombre varchar(50) not null, 
 Apellido varchar(50) not null,
-IdUsuario int foreign key  references Usuarios(Id),
 )
+
+
 
 Create table Vendedor(
 IdVendedor int Primary key identity(1,1),
 Nombre varchar(50) not null, 
 Apellido varchar(50) not null,
-IdUsuario int foreign key references Usuarios(Id)
 )
+
 
 Create table Clientes(
 IdCliente int Primary key identity(1,1),
@@ -106,11 +107,11 @@ values ('Armani', 1, 1, 1)
  ---------------------------------------------------
 
  create procedure spListarVendedores as
- select IdVendedor, Nombre, Apellido, IdUsuario from Vendedor
+ select IdVendedor, Nombre, Apellido from Vendedor
 
  exec spListarVendedores
 
- insert into Vendedor (Nombre, Apellido, IdUsuario)
+ insert into Vendedor (Nombre, Apellido)
  values ('Candela','Peña', 2)
  -----------------------------------------------------------
 
@@ -123,7 +124,7 @@ values ('Armani', 1, 1, 1)
  ----------------------------------------------------------
 
  create procedure spListarAdministradores as
- select IdAdministrador, Nombre, Apellido, IdUsuario from Administrador
+ select IdAdministrador, Nombre, Apellido from Administrador
 
  exec spListarAdministradores
 
@@ -151,6 +152,49 @@ values ('Armani', 1, 1, 1)
  @Nombre varchar (50)
  as
  insert into Categorias values(@Nombre,1)
+ -------------------------------------------------------------
+create procedure spAgregarProductos
+@Nombre varchar(50),
+@IdMarca int,
+@IdCategoria int
+as 
+insert into Productos values (@Nombre,@IdMarca ,@IdCategoria, 1)
+
+---------------------------------------------------------------
+
+create procedure spAgregarUsu
+@Usuario varchar(50),
+@Contraseña varchar(50),
+@TipoUsuario int
+as
+insert into Usuarios values (@Usuario, @Contraseña, @TipoUsuario)
+--------------------------------------------------------------------
+create procedure spAgregarAdmin
+@Usuario varchar(50),
+@Contraseña varchar (50),
+@Nombre varchar(50),
+@Apellido varchar(50)
+as
+insert into Administrador VALUEs(@Nombre, @Apellido)
+insert into Usuarios values (@Usuario, @Contraseña, 1)
+----------------------------------------------------------------
+create procedure spAgregarVende
+@Usuario varchar(50),
+@Contraseña varchar(50),
+@Nombre varchar(50),
+@Apellido varchar(50)
+as
+insert into Vendedor values(@Nombre, @Apellido)
+insert into Usuarios values (@Usuario, @Contraseña, 2)
+
+
+
+
+
+
+
+
+
 
 
 

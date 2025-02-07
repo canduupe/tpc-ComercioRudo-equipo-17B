@@ -26,7 +26,6 @@ namespace NEGOCIO
                     aux.Id = (int)datos.Lector["IdAdministrador"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
-                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];
 
                     lista.Add(aux);
                 }
@@ -41,6 +40,26 @@ namespace NEGOCIO
 
         }
 
+        public void Agregar(Usuarios usu, Administrador admin)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("spAgregarAdmin");
+                datos.setearParametro("@Usuario", usu.Usuario);
+                datos.setearParametro("@Contraseña", usu.Contraseña);
+                datos.setearParametro("@Nombre", admin.Nombre);
+                datos.setearParametro("@Apellido", admin.Apellido);
+
+                datos.realizarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
 
     }
 }

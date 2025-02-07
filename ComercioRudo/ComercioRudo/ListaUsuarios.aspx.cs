@@ -13,8 +13,13 @@ namespace ComercioRudo
         protected void Page_Load(object sender, EventArgs e)
         {
           UsuariosNegocio usuariosNegocio = new UsuariosNegocio();
-            dgvListaUsu.DataSource = usuariosNegocio.listarConSP();
-            dgvListaUsu.DataBind(); 
+          dgvListaUsu.DataSource = usuariosNegocio.listarConSP();
+          dgvListaUsu.DataBind(); 
+        }
+
+        protected void btnAgregarUsu_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgregarUsuario.aspx", false);    
         }
     }
 }

@@ -46,6 +46,28 @@ namespace NEGOCIO
 
         }
 
+        public void Agregar(Productos productos)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearProcedimiento("spAgregarProductos");
+                datos.setearParametro("@Nombre", productos.Nombre);
+                datos.setearParametro("@IdMarca", productos.IdMarca);
+                datos.setearParametro("@IdCategoria", productos.IdCategoria);
+
+                datos.realizarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
     }
 }

@@ -43,7 +43,27 @@ namespace NEGOCIO
 
         }
 
+        public void Agregar(Usuarios usu)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearProcedimiento("spAgregarUsu");
+                datos.setearParametro("@Usuario", usu.Usuario);
+                datos.setearParametro("@Contraseña", usu.Contraseña);
+                datos.setearParametro("@TipoUsuario", usu.tipoUsuario);
+
+                datos.realizarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
 
     }
 }

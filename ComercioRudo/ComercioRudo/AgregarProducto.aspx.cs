@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using NEGOCIO;
 using DOMINIO;
+using NEGOCIO;
 
 namespace ComercioRudo
 {
-    public partial class AgregarUsuario : System.Web.UI.Page
+    public partial class AgregarProducto : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,31 +18,30 @@ namespace ComercioRudo
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-           Usuarios usuarios = new Usuarios();
-           UsuariosNegocio negocio = new UsuariosNegocio();
             try
             {
-                usuarios.Usuario = txtTipoUsuario.Text;
-                usuarios.Contraseña = txtContraseña.Text;
-                usuarios.tipoUsuario = int.Parse(txtTipoUsuario.Text);
+                Productos productos = new Productos();
+                ProductosNegocio negocio = new ProductosNegocio();
 
-                negocio.Agregar(usuarios);
-                Response.Redirect("ListaUsuarios.aspx", false);
+                productos.Nombre = txtNombre.Text;
+                productos.IdCategoria = int.Parse(txtCate.Text);
+                productos.IdMarca = int.Parse(txtMarca.Text);
+
+                negocio.Agregar(productos);
+                Response.Redirect("ListaProductos.aspx", false);
+
             }
-
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                
                 throw;
             }
-
 
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ListaUsuarios.aspx", false);
+            Response.Redirect("ListaProductos.aspx", false);
         }
     }
 }

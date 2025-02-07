@@ -26,7 +26,7 @@ namespace NEGOCIO
                     aux.IdVendedor = (int)datos.Lector["IdVendedor"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
-                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    
 
                     lista.Add(aux);
 
@@ -42,7 +42,28 @@ namespace NEGOCIO
 
         }
 
+        public void Agregar(Usuarios usuarios, Vendedor vendedor)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("spAgregarVende");
+                datos.setearParametro("@Nombre", vendedor.Nombre);
+                datos.setearParametro("@Apellido",vendedor.Apellido);
+                datos.setearParametro("@Usuario",usuarios.Usuario);
+                datos.setearParametro("@Contraseña", usuarios.Contraseña);
 
+                datos.realizarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
 
     }
 }

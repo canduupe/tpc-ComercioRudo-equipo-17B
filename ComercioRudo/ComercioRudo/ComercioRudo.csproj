@@ -99,10 +99,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMadmin.aspx" />
+    <Content Include="ABMvendedores.aspx" />
     <Content Include="About.aspx" />
     <Content Include="AgregarCategoria.aspx" />
     <Content Include="AgregarCliente.aspx" />
     <Content Include="AgregarMarca.aspx" />
+    <Content Include="AgregarProducto.aspx" />
     <Content Include="AgregarUsuario.aspx" />
     <Content Include="Content\Botones.css" />
     <Content Include="Contact.aspx" />
@@ -197,6 +200,20 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMadmin.aspx.cs">
+      <DependentUpon>ABMadmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMadmin.aspx.designer.cs">
+      <DependentUpon>ABMadmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMvendedores.aspx.cs">
+      <DependentUpon>ABMvendedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMvendedores.aspx.designer.cs">
+      <DependentUpon>ABMvendedores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgregarCategoria.aspx.cs">
       <DependentUpon>AgregarCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -217,6 +234,13 @@
     </Compile>
     <Compile Include="AgregarMarca.aspx.designer.cs">
       <DependentUpon>AgregarMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="AgregarUsuario.aspx.cs">
       <DependentUpon>AgregarUsuario.aspx</DependentUpon>

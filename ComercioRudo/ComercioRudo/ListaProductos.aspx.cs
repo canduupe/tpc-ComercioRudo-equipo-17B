@@ -18,5 +18,10 @@ namespace ComercioRudo
 
 
         }
+
+        protected void btnAgregarProd_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgregarProducto.aspx", false);
+        }
     }
 }

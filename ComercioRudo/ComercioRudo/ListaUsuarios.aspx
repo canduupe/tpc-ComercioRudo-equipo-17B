@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <asp:GridView ID="dgvListaUsu" runat="server" CssClass="table"></asp:GridView>
-    <asp:Button ID="btnAgregarUsu" runat="server" Text="AGREGAR" CssClass="btn btn-outline-primary" />
+    <asp:Button ID="btnAgregarUsu" runat="server" Text="AGREGAR" CssClass="btn btn-outline-primary" OnClick="btnAgregarUsu_Click"    />
 
     
 </asp:Content>

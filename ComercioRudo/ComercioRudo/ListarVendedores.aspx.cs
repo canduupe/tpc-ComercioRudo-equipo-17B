@@ -17,5 +17,10 @@ namespace ComercioRudo
             dgvListarVend.DataBind();   
 
         }
+
+        protected void btnAgregarVend_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ABMvendedores.aspx", false);
+        }
     }
 }
