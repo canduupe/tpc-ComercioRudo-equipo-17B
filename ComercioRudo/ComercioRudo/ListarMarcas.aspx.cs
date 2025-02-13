@@ -23,5 +23,10 @@ namespace ComercioRudo
         {
             Response.Redirect("AgregarMarca.aspx", false);
         }
+
+        protected void dgvListaMarcas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

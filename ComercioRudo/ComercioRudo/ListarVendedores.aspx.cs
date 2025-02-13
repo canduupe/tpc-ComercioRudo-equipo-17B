@@ -22,5 +22,10 @@ namespace ComercioRudo
         {
             Response.Redirect("ABMvendedores.aspx", false);
         }
+
+        protected void dgvListarVend_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace ComercioRudo
         {
             Response.Redirect("AgregarCliente.aspx", false);
         }
+
+        protected void dgvListaCli_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                    
+        }
     }
 }

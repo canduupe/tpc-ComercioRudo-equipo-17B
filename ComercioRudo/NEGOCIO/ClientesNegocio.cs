@@ -26,7 +26,7 @@ namespace NEGOCIO
 
                     aux.IdCliente = (int)datos.Lector["IdCliente"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Apelldio = (string)datos.Lector["Apellido"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.DNI = (string)datos.Lector["DNI"];
 
                     lista.Add(aux);

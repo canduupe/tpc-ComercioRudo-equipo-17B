@@ -25,5 +25,10 @@ namespace ComercioRudo
         {
             Response.Redirect("AgregarCategoria.aspx", false);
         }
+
+        protected void gdvListaCate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

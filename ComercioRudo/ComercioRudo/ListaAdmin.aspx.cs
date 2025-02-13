@@ -22,5 +22,10 @@ namespace ComercioRudo
         {
             Response.Redirect("ABMadmin.aspx", false);
         }
+
+        protected void dgvListaAdmin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
