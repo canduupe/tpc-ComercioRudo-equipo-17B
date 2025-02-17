@@ -28,6 +28,8 @@ namespace ComercioRudo
 
         protected void gdvListaCate_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string idCategoria = gdvListaCate.SelectedDataKey.Value.ToString();
+            Response.Redirect("AgregarCategoria.aspx?IdCategoria=" + idCategoria);
 
         }
     }

@@ -68,6 +68,59 @@ namespace NEGOCIO
 
         }
 
+        public void Modificar(Categorias categorias)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+
+            try
+            {
+                datos.setearProcedimiento("spModCateSP");
+                datos.setearParametro("@id", categorias.IdCategoria);
+                datos.setearParametro("@Nombre", categorias.Nombre);
+
+                datos.realizarAccion();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+        public List<Categorias> Buscar (string id = "")
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Categorias> lista = new List<Categorias>();
+            try
+            {
+                string consulta = "select IdCategoria, Nombre, Activa from Categorias ";
+                if (id != "")
+                {
+                    consulta += "where IdCategoria = " + id;
+                }
+
+                datos.setearConsulta(consulta);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Categorias aux = new Categorias();
+                    aux.IdCategoria= (int)datos.Lector["IdCategoria"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    lista.Add(aux);
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
