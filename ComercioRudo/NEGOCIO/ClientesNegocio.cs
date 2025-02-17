@@ -49,7 +49,7 @@ namespace NEGOCIO
             {
                 datos.setearProcedimiento("spAgregarCli");
                 datos.setearParametro("@Nombre", cliente.Nombre);
-                datos.setearParametro("@Apellido", cliente.Apelldio);
+                datos.setearParametro("@Apellido", cliente.Apellido);
                 datos.setearParametro("@DNI", cliente.DNI);
 
                 datos.realizarAccion();

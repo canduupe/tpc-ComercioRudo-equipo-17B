@@ -14,6 +14,27 @@ namespace ComercioRudo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string id = Request.QueryString["IdMarca"] != null ? Request.QueryString["IdMarca"].ToString() : "";
+                if (id != "" && !IsPostBack)
+                {
+                    MarcasNegocio neg = new MarcasNegocio();
+                    //List<Marcas> lista = neg.Buscar(id);
+                    //Marcas seleccionada = lista[0];
+                    Marcas seleccionada = (neg.Buscar(id))[0];
+
+                    txtNombre.Text = seleccionada.Nombre;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
 
         }
 
@@ -26,7 +47,17 @@ namespace ComercioRudo
 
                 marcas.Nombre = txtNombre.Text;
 
-                negocio.Agregar(marcas);
+                if (Request.QueryString["IdMarca"] != null)
+                {
+                    marcas.IdMarca = int.Parse(Request.QueryString["IdMarca"].ToString());
+                    negocio.Modificar(marcas);
+                }
+                else
+                {
+                    negocio.Agregar(marcas);
+
+                }
+
                 Response.Redirect("ListarMarcas.aspx", false);
 
 
@@ -43,7 +74,7 @@ namespace ComercioRudo
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-           Response.Redirect("ListarMarcas.aspx", false);
+            Response.Redirect("ListarMarcas.aspx", false);
         }
     }
 }

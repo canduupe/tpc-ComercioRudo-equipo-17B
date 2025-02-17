@@ -60,5 +60,62 @@ namespace NEGOCIO
         }
 
 
+        public List<Marcas> Buscar(string id = "")
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Marcas> lista = new List<Marcas>();
+            try
+            {
+                string consulta = "select IdMarca, Nombre, Activa from Marcas ";
+                if(id != "")
+                {
+                    consulta += "where IdMarca = " + id;
+                }
+
+                datos.setearConsulta(consulta);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Marcas aux = new Marcas();
+                    aux.IdMarca = (int)datos.Lector["IdMarca"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                   lista.Add(aux);
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex; 
+            }
+
+
+        }
+
+        public void Modificar(Marcas marcas)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+            
+            try
+            {
+                datos.setearProcedimiento("spModMarcaSP");
+                datos.setearParametro("@id", marcas.IdMarca);
+                datos.setearParametro("@Nombre", marcas.Nombre);
+
+                datos.realizarAccion();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex ;
+            }
+
+
+        }
     }
 }

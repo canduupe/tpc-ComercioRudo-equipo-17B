@@ -4,11 +4,13 @@
   <asp:GridView ID="dgvListaMarcas" runat="server" CssClass="table"
    DataKeyNames="IdMarca"
      OnSelectedIndexChanged="dgvListaMarcas_SelectedIndexChanged"
-      AutoGenerateColumns="true">
+      AutoGenerateColumns="false">
 
       <Columns>
           <asp:BoundField  HeaderText="Id" DataField="IdMarca" />
           <asp:BoundField HeaderText ="Nombre" DataField="Nombre" />
+
+
           <asp:CommandField HeaderText="Modificar" SelectText="🛠️" ShowSelectButton="true" />
 
 
@@ -21,8 +23,9 @@
 
 
 
+      <asp:Button ID="btnAgregarMarca" runat="server" Text="AGREGAR" CssClass="btn btn-outline-primary" OnClick="btnAgregarMarca_Click"/>
 
-  <asp:Button ID="btnAgregarMarca" runat="server" Text="AGREGAR" CssClass="btn btn-outline-primary" OnClick="btnAgregarMarca_Click"/>
+    
 
 
 

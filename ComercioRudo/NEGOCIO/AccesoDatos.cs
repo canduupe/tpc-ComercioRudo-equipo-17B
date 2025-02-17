@@ -76,6 +76,9 @@ namespace NEGOCIO
             }
         }
 
+
+
+
         public void CerrarConexion()
         {
             if (lector!= null)

@@ -16,7 +16,7 @@ namespace ComercioRudo
             MarcasNegocio negocio = new MarcasNegocio();
             dgvListaMarcas.DataSource = negocio.listarConSP();
             dgvListaMarcas.DataBind();
-
+            
         }
 
         protected void btnAgregarMarca_Click(object sender, EventArgs e)
@@ -26,7 +26,8 @@ namespace ComercioRudo
 
         protected void dgvListaMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string IdMarca = dgvListaMarcas.SelectedDataKey.Value.ToString();
+            Response.Redirect("AgregarMarca.aspx?IdMarca=" + IdMarca);
         }
     }
 }

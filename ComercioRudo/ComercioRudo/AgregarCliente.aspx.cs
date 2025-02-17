@@ -23,7 +23,7 @@ namespace ComercioRudo
                 Clientes nuevo = new Clientes(); 
                 ClientesNegocio negocio = new ClientesNegocio();
                 nuevo.Nombre = txtNombre.Text;
-                nuevo.Apelldio = txtApellido.Text;
+                nuevo.Apellido = txtApellido.Text;
                 nuevo.DNI = txtDni.Text;
 
                 negocio.Agregar(nuevo);
