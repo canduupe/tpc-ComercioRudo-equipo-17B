@@ -13,6 +13,26 @@ namespace ComercioRudo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                string id = Request.QueryString["IdCliente"] != null ? Request.QueryString["IdCliente"].ToString() : "";
+                if(id != "" && !IsPostBack)
+                {
+                    ClientesNegocio neg = new ClientesNegocio();
+                    Clientes sleccionado = (neg.Buscar(id))[0];
+
+                    txtApellido.Text = sleccionado.Apellido;
+                    txtNombre.Text = sleccionado.Nombre;
+                    txtDni.Text = sleccionado.DNI;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -26,7 +46,17 @@ namespace ComercioRudo
                 nuevo.Apellido = txtApellido.Text;
                 nuevo.DNI = txtDni.Text;
 
+                if (Request.QueryString["IdCliente"] != null)
+                {
+                    nuevo.IdCliente = int.Parse(Request.QueryString["IdCliente"].ToString());
+                    negocio.Modificar(nuevo);
+                }
+                else
+                {
                 negocio.Agregar(nuevo);
+
+                }
+
                 Response.Redirect("ListaCliente.aspx", false);  
             }
             catch (Exception ex)

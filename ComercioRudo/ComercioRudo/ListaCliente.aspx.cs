@@ -25,6 +25,8 @@ namespace ComercioRudo
 
         protected void dgvListaCli_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string idCliente = dgvListaCli.SelectedDataKey.Value.ToString();
+            Response.Redirect("AgregarCliente.aspx?IdCliente=" + idCliente);
                     
         }
     }
