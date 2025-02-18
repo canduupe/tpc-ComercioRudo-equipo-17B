@@ -25,7 +25,8 @@ namespace ComercioRudo
 
         protected void dgvListarVend_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string idVende = dgvListarVend.SelectedDataKey.Value.ToString();
+            Response.Redirect("ABMvendedores.aspx?IdVendedor=" + idVende);
         }
     }
 }

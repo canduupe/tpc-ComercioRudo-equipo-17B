@@ -4,13 +4,13 @@
     <asp:GridView ID="dgvListarVend" runat="server" CssClass="table"
       DataKeyNames="IdVendedor"
        OnSelectedIndexChanged="dgvListarVend_SelectedIndexChanged"
-        AutoGenerateColumns="true">
+        AutoGenerateColumns="false">
 
         <Columns>
             <asp:BoundField HeaderText="Id" DataField="IdVendedor" />
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
-            <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="🛠️"
+            <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="🛠️" />
 
 
 
