@@ -25,7 +25,8 @@ namespace ComercioRudo
 
         protected void dgvListaAdmin_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string id = dgvListaAdmin.SelectedDataKey.Value.ToString();
+            Response.Redirect("ABMadmin.aspx?IdAdmin=" + id);
         }
     }
 }

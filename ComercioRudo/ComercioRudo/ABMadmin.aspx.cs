@@ -6,6 +6,7 @@ using System.Web.Caching;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DOMINIO;
+using Microsoft.Ajax.Utilities;
 using NEGOCIO;
 
 
@@ -16,6 +17,20 @@ namespace ComercioRudo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string id = Request.QueryString["IdAdmin"] != null ? Request.QueryString["IdAdmin"].ToString() : "";
+            if(id != "" && !IsPostBack)
+            {
+                AdmistradoresNegocio negocio = new AdmistradoresNegocio();
+                Administrador seleccionado = (negocio.Buscar(id))[0];
+
+                txtNombre.Text = seleccionado.Nombre;
+                txtApellido.Text = seleccionado.Apellido;
+                txtUsuario.Enabled = false;
+                txtContraseña.Enabled = false;
+
+            }
+
+
 
         }
 
@@ -30,9 +45,19 @@ namespace ComercioRudo
                 usuarios.Usuario = txtUsuario.Text;
                 usuarios.Contraseña = txtContraseña.Text;
                 administrador.Nombre = txtNombre.Text;
-                administrador.Apellido = txtApellido.Text;  
+                administrador.Apellido = txtApellido.Text;
 
-                negocio.Agregar(usuarios, administrador);
+                if (Request.QueryString["IdAdmin"] != null)
+                {
+                    administrador.Id = int.Parse(Request.QueryString["IdAdmin"].ToString());
+                    negocio.Modificar(administrador);
+                }
+                else
+                {
+                    negocio.Agregar(usuarios, administrador);
+                }
+
+
                 Response.Redirect("ListaAdmin.aspx", false);
             }
             catch (Exception ex)
