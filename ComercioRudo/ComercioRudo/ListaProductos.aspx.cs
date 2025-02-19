@@ -26,6 +26,9 @@ namespace ComercioRudo
 
         protected void dgvListaProduc_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string id= dgvListaProduc.SelectedDataKey.Value.ToString();
+            Response.Redirect("AgregarProducto.aspx?IdProducto=" + id);
+
 
         }
     }

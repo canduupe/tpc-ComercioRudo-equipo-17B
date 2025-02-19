@@ -13,7 +13,19 @@ namespace ComercioRudo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string id = Request.QueryString["IdProducto"] != null ? Request.QueryString["IdProducto"].ToString() : "";
+            if (id != "" && !IsPostBack)
+            {
+                ProductosNegocio negocio = new ProductosNegocio();
+                Productos seleccionado = (negocio.Buscar(id))[0];
 
+
+                txtNombre.Text = seleccionado.Nombre;
+                txtMarca.Text = seleccionado.IdMarca.ToString();
+                txtCate.Text = seleccionado.IdCategoria.ToString();
+
+
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -27,7 +39,17 @@ namespace ComercioRudo
                 productos.IdCategoria = int.Parse(txtCate.Text);
                 productos.IdMarca = int.Parse(txtMarca.Text);
 
-                negocio.Agregar(productos);
+                if (Request.QueryString["IdProducto"] != null)
+                {
+                    productos.IdProducto = int.Parse(Request.QueryString["IdProducto"].ToString());
+                    negocio.Modificar(productos);
+                }
+                else
+                {
+                    negocio.Agregar(productos);
+
+                }
+
                 Response.Redirect("ListaProductos.aspx", false);
 
             }

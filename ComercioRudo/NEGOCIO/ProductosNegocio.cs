@@ -69,5 +69,68 @@ namespace NEGOCIO
 
 
         }
+
+        public List<Productos> Buscar(string id = "")
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Productos> lista = new List<Productos>();
+            try
+            {
+                string consulta = " select IdProducto, Nombre, IdCategoria, IdMarca, Activa from Productos ";
+                if (id != "")
+                {
+                    consulta += "where IdProducto = " + id;
+                }
+
+                datos.setearConsulta(consulta);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Productos aux = new Productos();
+                    aux.IdProducto = (int)datos.Lector["IdProducto"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.IdCategoria = (int)datos.Lector["IdCategoria"];
+                    aux.IdMarca = (int)datos.Lector["IdMarca"];
+
+
+                    lista.Add(aux);
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
+
+        public void Modificar(Productos productos)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+
+            try
+            {
+                datos.setearProcedimiento("spModProducto");
+                datos.setearParametro("@IdProducto", productos.IdProducto);
+                datos.setearParametro("@Nombre", productos.Nombre);
+                datos.setearParametro("@IdCategoria", productos.IdCategoria);
+                datos.setearParametro("@IdMarca", productos.IdMarca);
+
+
+                datos.realizarAccion();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

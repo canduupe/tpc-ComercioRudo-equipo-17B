@@ -7,7 +7,7 @@
     <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
     <asp:BoundField HeaderText="IdMarca" DataField="IdMarca" />
     <asp:BoundField HeaderText="IdCategoria" DataField="IdCategoria" />
-    <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="🛠️"    
+    <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="🛠️"  />  
 
 </Columns>
 
