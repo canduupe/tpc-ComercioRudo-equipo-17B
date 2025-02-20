@@ -24,7 +24,7 @@ namespace NEGOCIO
                 {
                     Usuarios aux = new Usuarios();
 
-                    aux.Id = (int)datos.Lector["Id"];
+                    aux.IdUsuario = (int)datos.Lector["Id"];
                     aux.Usuario = (string)datos.Lector["Usuario"];
                     aux.Contraseña = (string)datos.Lector["Contraseña"];
                     aux.tipoUsuario = (int)datos.Lector["TipoUsuario"];
@@ -65,5 +65,65 @@ namespace NEGOCIO
 
         }
 
+        public List<Usuarios> Buscar(string id = "") 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Usuarios> lista = new List<Usuarios>();
+            try
+            {
+                string consulta = "select Id, Usuario, Contraseña ,TipoUsuario from Usuarios ";
+                if(id != "")
+                {
+                    consulta += "where Id = " + id;
+                }
+                datos.setearConsulta(consulta);
+                datos.EjecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Usuarios usu = new Usuarios();
+                    usu.IdUsuario = (int)datos.Lector["Id"];
+                    usu.Usuario = (string)datos.Lector["Usuario"];
+                    usu.Contraseña = (string)datos.Lector["Contraseña"];
+                    usu.tipoUsuario = (int)datos.Lector["TipoUsuario"];
+
+                    lista.Add(usu);
+                    
+
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+        public void Modificar(Usuarios usuarios)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("spModUsu");
+                datos.setearParametro("@IdUsu", usuarios.IdUsuario);
+                datos.setearParametro("@Usuario", usuarios.Usuario);
+                datos.setearParametro("@Contraseña", usuarios.Contraseña);
+                datos.setearParametro("@tipoUsu", usuarios.tipoUsuario);
+
+                datos.realizarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+
+        }
     }
 }

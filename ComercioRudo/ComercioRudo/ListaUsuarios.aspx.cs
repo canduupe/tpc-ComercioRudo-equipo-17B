@@ -21,5 +21,11 @@ namespace ComercioRudo
         {
             Response.Redirect("AgregarUsuario.aspx", false);    
         }
+
+        protected void dgvListaUsu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvListaUsu.SelectedDataKey.Value.ToString();
+            Response.Redirect("AgregarUsuario.aspx?IdUsuario=" + id);
+        }
     }
 }

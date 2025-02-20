@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NEGOCIO;
 using DOMINIO;
+using Microsoft.Ajax.Utilities;
 
 namespace ComercioRudo
 {
@@ -13,6 +14,18 @@ namespace ComercioRudo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string id = Request.QueryString["IdUsuario"] != null ? Request.QueryString["IdUsuario"].ToString() : "";
+            if(id != "" && !IsPostBack)
+            {
+                UsuariosNegocio negocio = new UsuariosNegocio();
+                Usuarios seleccionado = (negocio.Buscar(id))[0];
+
+                txtUsuario.Text = seleccionado.Usuario;
+                txtContraseña.Text = seleccionado.Contraseña;
+                txtTipoUsuario.Text = seleccionado.tipoUsuario.ToString();
+
+            }
+
 
         }
 
@@ -22,11 +35,21 @@ namespace ComercioRudo
            UsuariosNegocio negocio = new UsuariosNegocio();
             try
             {
-                usuarios.Usuario = txtTipoUsuario.Text;
+                usuarios.Usuario = txtUsuario.Text;
                 usuarios.Contraseña = txtContraseña.Text;
                 usuarios.tipoUsuario = int.Parse(txtTipoUsuario.Text);
 
-                negocio.Agregar(usuarios);
+                if (Request.QueryString["IdUsuario"]  != null)
+                {
+                    usuarios.IdUsuario = int.Parse(Request.QueryString["IdUsuario"].ToString());
+                    negocio.Modificar(usuarios);
+                }
+                else
+                {
+                    negocio.Agregar(usuarios);
+
+                }
+
                 Response.Redirect("ListaUsuarios.aspx", false);
             }
 
