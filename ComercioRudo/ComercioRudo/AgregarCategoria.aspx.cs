@@ -13,8 +13,11 @@ namespace ComercioRudo
 {
     public partial class AgregarCategoria : System.Web.UI.Page
     {
+        public bool confirmarEli { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            confirmarEli = false;
             try
             {
                 string id = Request.QueryString["IdCategoria"] != null ? Request.QueryString["IdCategoria"].ToString() : "";
@@ -74,5 +77,27 @@ namespace ComercioRudo
             Response.Redirect("ListaCategorias.aspx", false);
         }
 
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            confirmarEli = true;
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                CategoriasNegocio negocio = new CategoriasNegocio();
+                negocio.Eliminar(int.Parse(Request.QueryString["IdCategoria"].ToString()));
+                Response.Redirect("ListaCategorias.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
     }
 }

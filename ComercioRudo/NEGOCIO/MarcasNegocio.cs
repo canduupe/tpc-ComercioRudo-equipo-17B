@@ -117,5 +117,23 @@ namespace NEGOCIO
 
 
         }
+
+        public void Eliminar(int id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearProcedimiento("spElimarca");
+                datos.setearParametro("@Id", id);
+                datos.realizarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

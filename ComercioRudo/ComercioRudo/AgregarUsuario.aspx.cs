@@ -12,10 +12,13 @@ namespace ComercioRudo
 {
     public partial class AgregarUsuario : System.Web.UI.Page
     {
+        public bool confirmarEli { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            confirmarEli = false;
+
             string id = Request.QueryString["IdUsuario"] != null ? Request.QueryString["IdUsuario"].ToString() : "";
-            if(id != "" && !IsPostBack)
+            if (id != "" && !IsPostBack)
             {
                 UsuariosNegocio negocio = new UsuariosNegocio();
                 Usuarios seleccionado = (negocio.Buscar(id))[0];
@@ -31,15 +34,15 @@ namespace ComercioRudo
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-           Usuarios usuarios = new Usuarios();
-           UsuariosNegocio negocio = new UsuariosNegocio();
+            Usuarios usuarios = new Usuarios();
+            UsuariosNegocio negocio = new UsuariosNegocio();
             try
             {
                 usuarios.Usuario = txtUsuario.Text;
                 usuarios.Contraseña = txtContraseña.Text;
                 usuarios.tipoUsuario = int.Parse(txtTipoUsuario.Text);
 
-                if (Request.QueryString["IdUsuario"]  != null)
+                if (Request.QueryString["IdUsuario"] != null)
                 {
                     usuarios.IdUsuario = int.Parse(Request.QueryString["IdUsuario"].ToString());
                     negocio.Modificar(usuarios);
@@ -56,7 +59,7 @@ namespace ComercioRudo
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                
+
                 throw;
             }
 
@@ -66,6 +69,45 @@ namespace ComercioRudo
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListaUsuarios.aspx", false);
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            confirmarEli = true;
+
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UsuariosNegocio negocio = new UsuariosNegocio();
+                if (chkConfirm.Checked)
+                {
+                    negocio.elimnar(int.Parse(Request.QueryString["IdUsuario"].ToString()));
+                    Response.Redirect("ListaUsuarios.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        protected void btnInac_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UsuariosNegocio negocio = new UsuariosNegocio();
+                negocio.ElimnarLog(int.Parse(Request.QueryString["IdUsuario"].ToString()));
+                Response.Redirect("ListaUsuarios.aspx", false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

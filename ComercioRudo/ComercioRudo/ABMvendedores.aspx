@@ -23,5 +23,29 @@
     </div>
 
 
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+
+        <% if(Request.QueryString["IdVendedor"] != null){ %>
+
+        <div class="Boton">
+            <asp:Button Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_Click"       runat="server" CssClass="btn btn-danger" />
+        </div>
+
+        <% } %>
+
+
+        <%if (confirmarEli)
+            { %>
+        <div>
+            <asp:CheckBox Text="Confirmar Eliminacion" ID="chkConfirm" runat="server" />
+            <asp:Button Text="Confirmar" ID="btnConfirm" runat="server" OnClick="btnConfirm_Click"    CssClass="btn btn-danger" />
+
+        </div>
+
+        <% } %>
+    </ContentTemplate>
+</asp:UpdatePanel>
+
 
 </asp:Content>

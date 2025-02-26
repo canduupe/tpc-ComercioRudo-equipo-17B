@@ -13,8 +13,11 @@ namespace ComercioRudo
 {
     public partial class ABMvendedores : System.Web.UI.Page
     {
+
+        public bool confirmarEli { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            confirmarEli = false;
             string id = Request.QueryString["IdVendedor"] != null ? Request.QueryString["IdVendedor"].ToString() : "";
             if(id !="" && !IsPostBack)
             {
@@ -70,6 +73,29 @@ namespace ComercioRudo
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListarVendedores.aspx", false);
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            confirmarEli = true;
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                VendedoresNegocio negocio = new VendedoresNegocio();
+                negocio.Eliminar(int.Parse(Request.QueryString["IdVendedor"].ToString()));
+                Response.Redirect("ListarVendedores.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
         }
     }
 }

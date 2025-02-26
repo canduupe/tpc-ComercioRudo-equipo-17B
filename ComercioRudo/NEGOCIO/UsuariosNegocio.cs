@@ -125,5 +125,29 @@ namespace NEGOCIO
 
 
         }
+
+        public void elimnar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("spEliUsu");
+                datos.setearParametro("@Id", id);
+                datos.realizarAccion();
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
+
+        public void ElimnarLog(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

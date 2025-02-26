@@ -11,8 +11,10 @@ namespace ComercioRudo
 {
     public partial class AgregarProducto : System.Web.UI.Page
     {
+        public bool confirmarEli { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            confirmarEli = false;
             string id = Request.QueryString["IdProducto"] != null ? Request.QueryString["IdProducto"].ToString() : "";
             if (id != "" && !IsPostBack)
             {
@@ -64,6 +66,29 @@ namespace ComercioRudo
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListaProductos.aspx", false);
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            confirmarEli = true;
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductosNegocio negocio = new ProductosNegocio();
+                negocio.Eliminar(int.Parse(Request.QueryString["IdProducto"].ToString()));
+                Response.Redirect("ListaProductos.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
         }
     }
 }

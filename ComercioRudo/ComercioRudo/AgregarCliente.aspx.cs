@@ -11,6 +11,7 @@ namespace ComercioRudo
 {
     public partial class AgregarCliente : System.Web.UI.Page
     {
+        public bool confirmarEli { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -72,6 +73,27 @@ namespace ComercioRudo
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListaCliente.aspx", false );
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            confirmarEli = true;
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClientesNegocio negocio = new ClientesNegocio();
+                negocio.Eliminar(int.Parse(Request.QueryString["IdCliente"].ToString()));
+                Response.Redirect("ListaCliente.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }
